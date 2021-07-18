@@ -1,6 +1,6 @@
 package test
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+import akka.actor.{Actor, ActorRef, ActorSystem, Props, actorRef2Scala}
 import test.HelloActor.{helloActor, helloActorRef}
 
 
@@ -31,7 +31,7 @@ class HelloActor extends  Actor{
  *可以直接实现main方法，不用写main直接写内容
  */
 object HelloActor extends App {
-  private val helloActor: ActorSystem = ActorSystem("HelloActor")
+  private val helloActor: ActorSystem = ActorSystem("HelloActor")//语法糖，其实是ActorSystem.apply(...)
   private val helloActorRef: ActorRef = helloActor.actorOf(Props[HelloActor], "helloActor")
 
   helloActorRef ! "你好帅"
